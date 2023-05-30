@@ -1,0 +1,8 @@
+// Retrieve the data from local storage or fetch it from the server
+var userData = localStorage.getItem("userData"); // Assuming you stored it in local storage
+
+// Display the data in a list on the new page
+var dataList = document.getElementById("data-list");
+var listItem = document.createElement("li");
+listItem.textContent = userData.username + " - " + userData.email;
+dataList.appendChild(listItem);

@@ -6,76 +6,105 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <style>
+        /* Custom CSS for styling */
+        .custom-content {
+            padding: 15px;
+        }
+        .custom-footer {
+            text-align: center;
+            font-size: 12px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <div data-role="page">
-        <div data-role="header">
+        <div data-role="header" data-position="fixed">
             <h1>Simple Mobile Website</h1>
         </div>
-        <div data-role="content">
+        <div data-role="content" class="custom-content">
             <h2>Welcome to the Mobile Website</h2>
             <p>This is a simple mobile website created using jQuery Mobile.</p>
             <ul data-role="listview" data-inset="true">
-                <li><a href="#about">About</a></li>
+                <li><a href="#dataPage">Data</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
-        <div data-role="footer">
+        <div data-role="footer" class="custom-footer" data-position="fixed">
             <h4>&copy; 2023 Simple Mobile Website</h4>
         </div>
     </div>
 
-    <div data-role="page" id="about">
-        <div data-role="header">
-            <h1>About</h1>
+    <div data-role="page" id="dataPage">
+        <div data-role="header" data-position="fixed">
+            <h1>Data</h1>
         </div>
-        <div data-role="content">
-            <h2>About this Website</h2>
+        <div data-role="content" class="custom-content">
+            <h2>Data this Website</h2>
             <p>This is a simple mobile website created using jQuery Mobile.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum consequat justo, nec fringilla dui aliquam in. Nunc id justo id turpis dictum tempor.</p>
             <div style="text-align: center;background-color: rgb(216, 216, 216); margin: auto; width: 50%; padding: 10px;">
-                <p><strong>Name: </strong> Student Name</p>
-                <p><strong>Roll No: </strong> Student RollNO</p>
-                <p><strong>City: </strong> Student City</p>
+                <p><strong>Name: </strong><span id="dataName"></span></p>
+                <p><strong>Email: </strong><span id="dataEmail"></span></p>
+                <p><strong>Message: </strong><span id="dataMessage"></span></p>
             </div>
             <div style="text-align: center;"><a href="#" data-rel="back" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Go Back</a></div>
         </div>
-        <div data-role="footer">
+        <div data-role="footer" class="custom-footer" data-position="fixed">
             <h4>&copy; 2023 Simple Mobile Website</h4>
         </div>
     </div>
 
     <div data-role="page" id="contact">
-        <div data-role="header">
+        <div data-role="header" data-position="fixed">
             <h1>Contact</h1>
         </div>
-        <div data-role="content">
+        <div data-role="content" class="custom-content">
             <h2>Contact Us</h2>
             <p>You can contact us at contact@example.com.</p>
             <div>
-                <div data-role="fieldcontain">
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" id="name" placeholder="Your Name">
-                </div>
-                <div data-role="fieldcontain">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" placeholder="Your Email">
-                </div>
-                <div data-role="fieldcontain">
-                    <label for="message">Message:</label>
-                    <textarea name="message" id="message" placeholder="Your Message"></textarea>
-                </div>
-                <div style="text-align: center; margin-bottom:30px">
-                <input type="submit" value="Send" data-inline="true">
-                <a href="#" data-rel="back" class="ui-btn ui-btn-inline ui-shadow ui-corner-all">Go Back</a>
-                
-                </div>
-            </form>
-            
+                <form id="contactForm">
+                    <div data-role="fieldcontain">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" placeholder="Your Name">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" placeholder="Your Email">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="message">Message:</label>
+                        <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                    </div>
+                    <div style="text-align: center; margin-bottom:30px">
+                        <input type="submit" value="Send" data-inline="true" data-theme="b">
+                        <a href="#" data-rel="back" class="ui-btn ui-btn-inline ui-shadow ui-corner-all" data-theme="c">Go Back</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div data-role="footer">
+        <div data-role="footer" class="custom-footer" data-position="fixed">
             <h4>&copy; 2023 Simple Mobile Website</h4>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $('#contactForm').submit(function(e) {
+                e.preventDefault();
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var message = $('#message').val();
+                // Set values in the data page
+                $('#dataName').text(name);
+                $('#dataEmail').text(email);
+                $('#dataMessage').text(message);
+                // Navigate to the data page
+                $.mobile.changePage('#dataPage');
+            });
+        });
+    </script>
 </body>
 </html>
